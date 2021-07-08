@@ -26,35 +26,43 @@ const numTeam = () => {
         let team = document.getElementById("team");
         let div = document.createElement("div");
         let par = document.createElement("p");
+        let ol = document.createElement("ol");
         par.innerHTML = "Team" + i;
         div.setAttribute("class","col");
         div.setAttribute("id","col"+i);
         div.appendChild(par);
+        div.appendChild(ol);
         team.appendChild(div);
     }
 }
 
 const assignTeam = () => {
     let totalStudent = studentArr.length;
-    let eachStudentPerTeam = totalStudent/numberOfTeam;
-    console.log(totalStudent)
-    // console.log("second:" + parseInt(eachStudentPerTeam))
-    
-    let randomStudent = Math.floor(Math.random() * totalStudent);
-    console.log("random:" + randomStudent);
-    let studentToTeam = studentArr[randomStudent];
-    console.log(studentToTeam);
+    if(totalStudent !== 0){
+        let eachStudentPerTeam = totalStudent/numberOfTeam;
+        // console.log("second:" + parseInt(eachStudentPerTeam))
+        
+        let randomStudent = Math.floor(Math.random() * totalStudent);
+        console.log("random:" + randomStudent);
+        let studentToTeam = studentArr[randomStudent];
 
+        let randomTeam = Math.floor(Math.random() * numberOfTeam) + 1;
+        let randomColumn = "col"+randomTeam
+        console.log(randomColumn);
 
+        let x = document.getElementById("col1").children;
+        console.log(x)
+        let test = document.getElementById(randomColumn)
+        let ol = document.getElementById("ol");
+        let li = document.createElement("li");
+        li.innerHTML = studentToTeam;
+        ol.appendChild(li);
+        test.appendChild(ol);
 
-    let team = document.getElementById("team").children.length;
-    let test = document.getElementById("col1")
-    let ol = document.createElement("ol");
-    let li = document.createElement("li");
-    li.innerHTML = studentToTeam;
-    ol.appendChild(li);
-    test.appendChild(ol);
+        studentArr.splice(randomStudent, 1)
+    }else{
+        alert("There are no more student in waiting list.");
+    }
 
-    // when the
-    studentArr.splice(randomStudent, 1)
 }
+
